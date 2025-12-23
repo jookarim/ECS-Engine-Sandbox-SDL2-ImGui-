@@ -20,7 +20,6 @@ The goal of this project is to demonstrate a clear understanding of **ECS archit
 - **Entity Management**
   - Create and destroy entities at runtime
   - Safe entity removal without breaking systems
-  - Optional entity ID reuse
 
 - **ImGui Editor**
   - Control / delete entities
@@ -96,7 +95,7 @@ ECS is used for **gameplay logic and data-driven entities**, while scenes such a
 
 ### Build Steps
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone <https://github.com/jookarim/Astroids-Clone-ECS.git>
+cd <Astroids-Clone-ECS>
 cmake -S . -B build
 cmake --build build
