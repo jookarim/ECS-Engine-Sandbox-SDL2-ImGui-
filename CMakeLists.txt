@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
 
-project(Astroids_Clone_ECS LANGUAGES CXX)
+project(ECS-Engine-Sandbox-SDL2-ImGui- LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -25,7 +25,7 @@ target_include_directories(imgui PUBLIC
 target_link_libraries(imgui PUBLIC SDL2)
 
 # ---------------- Game ----------------
-add_executable(Astroids_Clone_ECS
+add_executable(ECS-Engine-Sandbox-SDL2-ImGui-
     src/main.cpp
     src/Action.cpp
     src/ActionManager.cpp
@@ -54,16 +54,16 @@ add_executable(Astroids_Clone_ECS
     src/VertexArray.cpp
 )
 
-target_include_directories(Astroids_Clone_ECS PRIVATE
+target_include_directories(ECS-Engine-Sandbox-SDL2-ImGui- PRIVATE
     include
     External/include
 )
 
-target_link_directories(Astroids_Clone_ECS PRIVATE
+target_link_directories(ECS-Engine-Sandbox-SDL2-ImGui- PRIVATE
     External/lib/SDL2
 )
 
-target_link_libraries(Astroids_Clone_ECS PRIVATE
+target_link_libraries(ECS-Engine-Sandbox-SDL2-ImGui- PRIVATE
     SDL2
     SDL2main
     SDL2_image
@@ -76,17 +76,17 @@ target_link_libraries(Astroids_Clone_ECS PRIVATE
 add_custom_target(copy_assets ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/assets
-        $<TARGET_FILE_DIR:Astroids_Clone_ECS>/assets
+        $<TARGET_FILE_DIR:ECS-Engine-Sandbox-SDL2-ImGui->/assets
 )
-add_dependencies(Astroids_Clone_ECS copy_assets)
+add_dependencies(ECS-Engine-Sandbox-SDL2-ImGui- copy_assets)
 
 # ---------------- SDL DLLs ----------------
 file(GLOB SDL_DLLS
     "${CMAKE_SOURCE_DIR}/External/lib/SDL2/*.dll"
 )
 
-add_custom_command(TARGET Astroids_Clone_ECS POST_BUILD
+add_custom_command(TARGET ECS-Engine-Sandbox-SDL2-ImGui- POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         ${SDL_DLLS}
-        $<TARGET_FILE_DIR:Astroids_Clone_ECS>
+        $<TARGET_FILE_DIR:ECS-Engine-Sandbox-SDL2-ImGui->
 )
