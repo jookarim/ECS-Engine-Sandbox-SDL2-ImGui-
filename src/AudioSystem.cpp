@@ -12,8 +12,7 @@ void AudioSystem::update(float dt)
 {
     if (!m_musicStarted)
     {
-        auto music =
-            AssetManager::getInstance().getMusic("assets/sounds/game_music.mp3");
+        auto music = AssetManager::getInstance().getMusic("assets/sounds/game_music.wav");
 
         if (music)
         {
@@ -63,7 +62,7 @@ void AudioSystem::update(float dt)
             action.isPressed())
         {
             auto sound =
-                AssetManager::getInstance().getSound("assets/sounds/laser.mp3");
+                AssetManager::getInstance().getSound("assets/sounds/laser.wav");
 
             if (sound)    
             {
@@ -76,8 +75,7 @@ void AudioSystem::update(float dt)
     if (!m_audioDisabled &&
         (m_physics.getState().enemyHit || m_physics.getState().playerHit))
     {
-        auto sound =
-            AssetManager::getInstance().getSound("assets/sounds/boom.wav");
+        auto sound = AssetManager::getInstance().getSound("assets/sounds/boom.wav");
 
         if (sound)
         {

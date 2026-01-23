@@ -14,7 +14,7 @@ Game::Game()
     m_sceneStart = std::make_unique<SceneStart>(m_window);
     m_activeScene = ActiveScene::Start;
 
-    Mix_PlayMusic(AssetManager::getInstance().getMusic("assets/sounds/game_music.mp3")->getMusic(), -1);
+    Mix_PlayMusic(AssetManager::getInstance().getMusic("assets/sounds/game_music.wav")->getMusic(), -1);
 
 }
 
@@ -32,9 +32,9 @@ void Game::loadAssets()
     assets.addTexture(renderer, "assets/images/enemy.png");
     assets.addTexture(renderer, "assets/images/heart.png");
     assets.addText("assets/fonts/arial.ttf");
-    assets.addMusic("assets/sounds/game_music.mp3");
-    assets.addMusic("assets/sounds/lose.mp3");
-    assets.addSound("assets/sounds/laser.mp3");
+    assets.addMusic("assets/sounds/game_music.wav");
+    assets.addMusic("assets/sounds/lose.wav");
+    assets.addSound("assets/sounds/laser.wav");
     assets.addSound("assets/sounds/boom.wav");
 }
 
@@ -96,7 +96,7 @@ void Game::updateGameScene()
         Mix_HaltMusic();
         Mix_PlayMusic(
             AssetManager::getInstance()
-            .getMusic("assets/sounds/lose.mp3")
+            .getMusic("assets/sounds/lose.wav")
             ->getMusic(),
             1
         );
@@ -123,7 +123,7 @@ void Game::updateRestartScene()
         Mix_HaltMusic();
         Mix_PlayMusic(
             AssetManager::getInstance()
-            .getMusic("assets/sounds/game_music.mp3")
+            .getMusic("assets/sounds/game_music.wav")
             ->getMusic(),
             -1
         );
