@@ -21,6 +21,8 @@ jobs:
 
     - name: Setup vcpkg
       uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgDirectory: ${{ github.workspace }}/vcpkg
 
     - name: Set reusable strings
       id: strings
