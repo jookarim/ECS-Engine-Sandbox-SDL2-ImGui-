@@ -1,11 +1,13 @@
 {
   "name": "ecs-engine-sandbox",
-  "version": "0.1.0",
+  "version-string": "0.1.0",
+
+  "builtin-baseline": "e9f4c35a2a6d6c4e8e7cddc94a6d1b8dbf0bcb3a",
+
   "dependencies": [
     "sdl2",
     "sdl2-image",
     "sdl2-mixer",
-    "sdl2-ttf",
-    "imgui"
+    "sdl2-ttf"
   ]
 }
