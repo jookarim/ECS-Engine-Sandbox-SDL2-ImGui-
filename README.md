@@ -1,7 +1,7 @@
 
 # ECS-Engine-Sandbox-SDL2-ImGui
 Astroids clone ECS with SDL2 and ImGui.
-=======
+========
 # ECS Assignment – Entity Management with SDL2 & ImGui
 
 This project is an implementation of an **Entity Component System (ECS)** built from scratch in **C++**, using **SDL2** for windowing and input, and **ImGui** for debugging and editor UI.
