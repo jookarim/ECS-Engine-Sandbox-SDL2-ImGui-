@@ -14,29 +14,37 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        build_type: [Release]
 
     steps:
-    - uses: actions/checkout@v4
+    # ---------------- Checkout ----------------
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - name: Setup vcpkg
-      uses: lukka/run-vcpkg@v11
-      with:
-        vcpkgDirectory: ${{ runner.temp }}/vcpkg
-        vcpkgGitCommitId: e9f4c35a2a6d6c4e8e7cddc94a6d1b8dbf0bcb3a
-
-    - name: Set reusable strings
-      id: strings
-      shell: bash
+    # ---------------- Clone vcpkg ----------------
+    - name: Clone vcpkg
       run: |
-        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        git checkout e9f4c35a2a6d6c4e8e7cddc94a6d1b8dbf0bcb3a
 
+    # ---------------- Bootstrap vcpkg (Linux) ----------------
+    - name: Bootstrap vcpkg (Linux)
+      if: runner.os == 'Linux'
+      run: ./vcpkg/bootstrap-vcpkg.sh
+
+    # ---------------- Bootstrap vcpkg (Windows) ----------------
+    - name: Bootstrap vcpkg (Windows)
+      if: runner.os == 'Windows'
+      run: .\vcpkg\bootstrap-vcpkg.bat
+
+    # ---------------- Configure CMake ----------------
     - name: Configure CMake
       run: >
-        cmake -S ${{ github.workspace }}
-        -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        cmake -S .
+        -B build
+        -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
+    # ---------------- Build ----------------
     - name: Build
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      run: cmake --build build --config Release
