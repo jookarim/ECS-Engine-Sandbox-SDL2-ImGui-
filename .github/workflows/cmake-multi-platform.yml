@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
     # ---------------- Checkout ----------------
@@ -47,6 +47,14 @@ jobs:
           libtool \
           libltdl-dev \
           pkg-config
+
+    # ---------------- Install build tools (macOS) ----------------
+    - name: Install build tools (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew update
+        brew install ninja autoconf automake libtool pkg-config
+
     # ---------------- Configure CMake ----------------
     - name: Configure CMake
       run: >
