@@ -22,9 +22,7 @@ jobs:
 
     # ---------------- Clone vcpkg ----------------
     - name: Clone vcpkg
-      run: |
-        git clone https://github.com/microsoft/vcpkg.git
-        cd vcpkg
+      run: git clone https://github.com/microsoft/vcpkg.git
 
     # ---------------- Bootstrap vcpkg (Linux) ----------------
     - name: Bootstrap vcpkg (Linux)
@@ -35,6 +33,19 @@ jobs:
     - name: Bootstrap vcpkg (Windows)
       if: runner.os == 'Windows'
       run: .\vcpkg\bootstrap-vcpkg.bat
+
+    # ---------------- Install build tools (Linux) ----------------
+    - name: Install build tools (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          ninja-build \
+          autoconf \
+          autoconf-archive \
+          automake \
+          libtool \
+          pkg-config
 
     # ---------------- Configure CMake ----------------
     - name: Configure CMake
