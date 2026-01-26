@@ -45,8 +45,8 @@ jobs:
           autoconf-archive \
           automake \
           libtool \
+          libltdl-dev \
           pkg-config
-
     # ---------------- Configure CMake ----------------
     - name: Configure CMake
       run: >
