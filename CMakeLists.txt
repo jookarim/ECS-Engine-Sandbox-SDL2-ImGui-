@@ -71,9 +71,17 @@ target_include_directories(ECS-Engine-Sandbox-SDL2-ImGui- PRIVATE
 target_link_libraries(ECS-Engine-Sandbox-SDL2-ImGui- PRIVATE
     imgui
     SDL2::SDL2
-    SDL2_image::SDL2_image
-    SDL2_mixer::SDL2_mixer
-    SDL2_ttf::SDL2_ttf
+   $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,
+        SDL2_image::SDL2_image,
+        SDL2_image::SDL2_image-static>
+
+    $<IF:$<TARGET_EXISTS:SDL2_mixer::SDL2_mixer>,
+        SDL2_mixer::SDL2_mixer,
+        SDL2_mixer::SDL2_mixer-static>
+
+    $<IF:$<TARGET_EXISTS:SDL2_ttf::SDL2_ttf>,
+        SDL2_ttf::SDL2_ttf,
+        SDL2_ttf::SDL2_ttf-static>
 )
 
 # ---------------- Assets ----------------
